@@ -142,3 +142,10 @@ dependencies {
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
 }
+ext.iqScanDir = 'build/lib'
+task copyCompileDependencies(type: Copy) {
+    into iqScanDir
+    from configurations.compile
+}
+
+commandLine "java", "-jar", "/opt/IQ_CLI/nexus-iq-cli-1.31.0-01.jar", "-a", "admin:Dog1" , "-i", "AND1", "-w", "-s", "http://localhost:8070", iqScanDir, "--stage", "build"
