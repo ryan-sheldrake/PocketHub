@@ -149,7 +149,7 @@ dependencies {
         exclude group: 'commons-logging', module: 'commons-logging'
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
-    iq fileTree(dir: "/Users/krobinson/AndroidStudioProjects/IQGradleTesting/iqLibs", include: '*.jar')
+    iq fileTree(dir: "/opt/IQ_CLI/", include: '*.jar')
 }
 ext.iqScanDir = 'build/lib'
 task copyCompileDependencies(type: Copy) {
