@@ -164,7 +164,7 @@ task iqScan(type: JavaExec) {
 
     // arguments to pass to the IQ CLI
     args '-s', 'http://localhost:8070',
-        '-i', 'app',
+        '-i', 'AND1',
         '-a', "gradle_user:Dog1",
         iqScanDir
 }
