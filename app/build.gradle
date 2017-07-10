@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'com.github.ben-manes.versions'   // ./gradlew dependencyUpdates -Drevision=release
-apply from: 'quality.gradle'
+//apply plugin: 'me.tatarka.retrolambda'
+//apply plugin: 'com.github.ben-manes.versions'   // ./gradlew dependencyUpdates -Drevision=release
+//apply from: 'quality.gradle'
 
 repositories {
     flatDir {
@@ -66,6 +66,10 @@ android {
 
         resValue "string", "github_oauth", oauth
         resValue "string", "github_oauth_scheme", oauth.split("://")[0]
+
+        jackOptions {
+            enabled true
+        }
     }
 
     buildTypes {
@@ -106,6 +110,10 @@ android {
     }
 }
 
+configurations {
+    iq
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -132,7 +140,7 @@ dependencies {
     compile 'com.afollestad.material-dialogs:core:0.9.4.4'
 
     //Self compiled .aar version of wishlist
-    compile (name:'lib', ext:'aar')
+//    compile (name:'lib', ext:'aar')
 
     //Libs for testing
     testCompile 'junit:junit:4.12'
@@ -141,9 +149,23 @@ dependencies {
         exclude group: 'commons-logging', module: 'commons-logging'
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
+    iq fileTree(dir: "/Users/krobinson/AndroidStudioProjects/IQGradleTesting/iqLibs", include: '*.jar')
 }
 ext.iqScanDir = 'build/lib'
 task copyCompileDependencies(type: Copy) {
     into iqScanDir
     from configurations.compile
 }
+
+task iqScan(type: JavaExec) {
+    classpath = files(configurations.iq.asPath)
+
+    main = 'com.sonatype.insight.scan.cli.PolicyEvaluatorCli'
+
+    // arguments to pass to the IQ CLI
+    args '-s', 'http://localhost:8070',
+        '-i', 'app',
+        '-a', 'admin:admin123',
+        iqScanDir
+}
+iqScan.dependsOn 'copyCompileDependencies'
