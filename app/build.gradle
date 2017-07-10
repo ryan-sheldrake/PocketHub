@@ -131,7 +131,12 @@ dependencies {
     compile 'com.trello.rxlifecycle2:rxlifecycle-android:2.0.1'
     compile 'com.bugsnag:bugsnag-android:3.2.7'
     compile 'org.roboguice:roboguice:2.0'
-
+    // added as per sample application by ryan
+    compile 'com.android.support.constraint:constraint-layout:1.0.1'
+    compile 'com.google.code.gson:gson:1.7.2'
+    compile 'com.squareup.retrofit:retrofit:1.1.0'
+    compile 'org.bouncycastle:bcprov-jdk15on:1.47'
+// end of section added by ryan
     compile 'com.github.meisolsson:githubsdk:0.4.5'
 
     compile ('com.google.inject.extensions:guice-assistedinject:3.0'){
