@@ -32,5 +32,5 @@ task copyCompileDependencies(type: Copy) {
 
 task scanIQ(type:Exec) {
 
-commandLine "java", "-jar", "/opt/IQ_CLI/nexus-iq-cli-1.31.0-01.jar", "-a", "-admin:"${IQ_Password} "-i", "AND1", "-w", "-s", "http://localhost:8070", iqScanDir, "--stage", "build"
+commandLine "java", "-jar", "/opt/IQ_CLI/nexus-iq-cli-1.31.0-01.jar", "-a", "-admin:", ${IQ_Password} "-i", "AND1", "-w", "-s", "http://localhost:8070", iqScanDir, "--stage", "build"
 }
