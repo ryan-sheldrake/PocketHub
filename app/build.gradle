@@ -142,3 +142,8 @@ dependencies {
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
 }
+ext.iqScanDir = 'build/lib'
+task copyCompileDependencies(type: Copy) {
+    into iqScanDir
+    from configurations.compile
+}
