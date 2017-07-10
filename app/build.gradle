@@ -165,7 +165,7 @@ task iqScan(type: JavaExec) {
     // arguments to pass to the IQ CLI
     args '-s', 'http://localhost:8070',
         '-i', 'app',
-        '-a', "admin:${IQ_Password}",
+        '-a', "gradle_user:Dog1",
         iqScanDir
 }
 iqScan.dependsOn 'copyCompileDependencies'
