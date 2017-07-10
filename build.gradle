@@ -24,11 +24,3 @@ allprojects {
     }
 
 }
-ext.iqScanDir = 'build/lib'
-task copyCompileDependencies(type: Copy) {
-    into iqScanDir
-    from configurations.compile
-}
-
-IQ_passwd = System.getProperty('IQ_Password')
-commandLine "java", "-jar", "/opt/IQ_CLI/nexus-iq-cli-1.31.0-01.jar", "-a", "-admin:", IQ_passwd , "-i", "AND1", "-w", "-s", "http://localhost:8070", iqScanDir, "--stage", "build"
